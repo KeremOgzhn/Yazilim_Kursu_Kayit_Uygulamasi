@@ -14,6 +14,41 @@ Bu uygulama, öğrencilerin yazılım kurslarına kaydolmalarını, mevcut kayı
 4.  "veri tabanı dosyaları" klasöründeki veritabanını kurun veya mevcut veritabanı bağlantı ayarlarını projede güncelleyin. (Bu adım projenizin veritabanı kullanım şekline göre değişiklik gösterebilir. Örneğin, `App.config` veya `Web.config` dosyasındaki connection string'i düzenlemeniz gerekebilir.)
 5.  Projeyi Visual Studio üzerinden derleyin (Build) ve çalıştırın (Start).
 
+## Veri Tabanı Dosyalarını Açma Rehberi
+
+Bu projede kullanılan MSSQL veri tabanı dosyalarını (.mdf ve .ldf) kendi bilgisayarınızda açmak için aşağıdaki adımları izleyin:
+
+### 1. Gereksinimler
+- SQL Server (örn. SQL Server Express veya tam sürümü)
+- SQL Server Management Studio (SSMS)
+
+### 2. Veri Tabanını Eklemek (Attach)
+1. .mdf ve .ldf dosyalarını bilgisayarınıza indirin.
+2. SQL Server Management Studio’yu (SSMS) açın.
+3. Sunucuya bağlanın.
+4. “Databases” (Veritabanları) kısmına sağ tıklayın ve **Attach** (Ekle) seçeneğini seçin.
+5. Açılan pencerede **Add** (Ekle) butonuyla .mdf dosyasını seçin.
+6. SQL Server, .ldf dosyasını otomatik olarak bulacaktır. Bulamazsa, elle ekleyin.
+7. **OK** diyerek işlemi tamamlayın.
+
+### 3. Bağlantı Dizesini (Connection String) Güncelleyin
+Projedeki bağlantı dizesini, kendi bilgisayarınızdaki veri tabanının yoluna göre güncelleyin:
+
+```csharp
+Data Source=.\SQLEXPRESS;AttachDbFilename=C:\KendiYolu\Veritabani.mdf;Integrated Security=True
+```
+
+> Not: `AttachDbFilename` kısmındaki yolu, kendi bilgisayarınızdaki .mdf dosyasının tam yoluna göre değiştirin.
+
+### 4. Yetki Problemleri
+Eğer dosya ile ilgili yetki sorunları yaşarsanız:
+- Dosya üzerinde okuma/yazma izni olduğundan emin olun.
+- SQL Server'ın çalıştığı kullanıcının bu dosyaya erişim izni olduğundan emin olun.
+
+---
+
+Herhangi bir sorun yaşarsanız veya adımlar hakkında sorunuz olursa lütfen bir issue açın!
+
 ## 🛠️ Kullanım
 
 Uygulama başlatıldıktan sonra, aşağıdaki gibi temel işlemleri gerçekleştirebilirsiniz:
